@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-sm-10">
+    <h3 class="text-white  my-5  ">Want To Be A Author</h3>
+       {% for message in messages  %}
+            <p {% if message.tags %} class="alert  alert-{{messagetags}}  md-5    "     {% endif %} >
+            {{message}} </p>
+       {% endfor %}
+    <form action="" method="POST" novalidate>
+     {% csrf_token %}
+     {% for fm in  form %}
+     <div class="form-group">
+     {{fm.label_tag}} {{fm}}  <small class="text-warning">{{fm.errors |striptags}} </small>   
+    
+     {% endfor %}
+    
+    </div>
+     <button class="btn btn-primary">SUBMIT</button>
+     
+     {% if forms.non_field_errors %}
+     {% for error in forms.non_field_errors %}
+     {{error}}
+     
+     {% endfor %}
+     
+     {% endif %}
+    </form>
+   
+</div>
+{% endblock content %}
+
